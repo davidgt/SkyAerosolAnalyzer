@@ -1,0 +1,25 @@
+Hoja de tratar puntos conflictivos del proyecto y decisiones.
+
+1.-TOMA DE FOTOS POR PARTE DEL USUARIO
+	Es conocido que el ángulo de incidencia del sol sobre las partículas de la atmosfera modifica
+	el color del cielo que queremos analizar.
+	Para solucionar esto se deberá tomar la foto con una inclinación de 0º respecto al eje cenital,
+	o lo que es lo mismo, totalmente vertical respecto a tierra, sentido al cielo.
+	
+	Por otra parte el balance de blancos, que por defecto se realiza de forma automática, también supone
+	una variable que modifica los datos de color de una cámara a otra. Para solucionar esto habíamos 
+	pensado en un primer momento que sería obligatorio que en alguna parte de la foto apareciera
+	algúna muestra de color neutro para hacer el balance de blancos a posteriori en la fase de proceso
+	pero configurando la cámara del móbil con balance de blancos manual y forzando un coeficiente
+	fijo también se debe de solucionar ese problema.
+	
+2.-INTERPRETACION DE LOS DATOS QUE OBTENEMOS DESDE AERONET 
+	Aerosol = En ingeniería ambiental, se denomina aerosol a un coloide de partículas sólidas o líquidas suspendidas en un gas.
+	AOD y AOT = Aerosol Optical Depth/Thickness, Grado de impedimento que impone un aerosol a ser atravesado por la luz.
+	AOT_1640 = Grado de impedimento que impone un aerosol para cierta longitud de onda.
+	440-870Angstrom = (AOD1)-(AOD2)Angstrom = alfa de angstrom, indice obtenido a partir de una formula para obtener el 
+		espesor óptico de los aerosoles (lo que hacen que el cielo sea más blanquinoso o azulado), valor comprendido 
+		entre 0-4 (pero lo habitual es entre 0-2.5), el cual usaremos como patrón de concentración de aerosoles.
+		(menos valor significa más blanquinoso, más valor más azulado).
+		
+	
