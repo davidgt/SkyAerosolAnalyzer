@@ -29,7 +29,8 @@ function initialize() {
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
         document.getElementById('legend'));
 
-    var iconBase = 'http://localhost/jslab/skyAerosolAnalyzer/img/';
+    // var iconBase = 'http://localhost/jslab/skyAerosolAnalyzer/img/';
+    var iconBase = 'img/';
         var icons = {
           level1: {
             name: 'Level 1',
