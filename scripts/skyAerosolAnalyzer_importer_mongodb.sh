@@ -2,7 +2,11 @@
 
 # this script arranges and import the data from  ERONET [AEROSOL ROBOTIC NETWORK] http://aeronet.gsfc.nasa.gov/cgi-bin/combined_data_access_inv
 # in dubovik extension (is nothing else than a csv) into a mongoDB
-# by carvilsi 
+# by carvilsi
+
+# tested only with Level 2.0 Almucantar Inversion Products version 2 Daily Average 
+# I do not know if it works with All Points or Monthly Average files
+ 
 
 # name of database in mongo db
 DB="skyAerosol"
