@@ -4,7 +4,7 @@
 # in dubovik extension (is nothing else than a csv) into a mongoDB
 # by carvilsi
 
-# tested only with Level 2.0 Almucantar Inversion Products version 2 Daily Average 
+# tested only with Level 2.0 Almucantar Inversion Products version 2 Daily Average dubovikday extension 
 # I do not know if it works with All Points or Monthly Average files
  
 
@@ -24,14 +24,14 @@ EOF
 }
 
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -eq 1 ]; then
     echo "Illegal number of parameters"
     usage_script
 fi
 
 
 
-if [ -f t1.csv ]
+if [ -e t1.csv ]
 then
 	rm t1.csv t0.csv th0.csv tf0.csv tf1.csv o.csv
 fi
@@ -49,6 +49,7 @@ do
 	cat tf1.csv >> o.csv 
 	echo "Importing $f to mongo..."
 	mongoimport -d $DB -c $COLL --type csv --file o.csv --headerline
+	rm t1.csv t0.csv th0.csv tf0.csv tf1.csv o.csv
 
 done
 
