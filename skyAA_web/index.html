@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sky Aerosol Analyzer</title>
+
+    <!--    STYLES-->
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <!--      NAV BAR -->
+
+    <nav class="navbar navbar-default navbar-fixed-top topnav barra" role="navigation">
+        <div class="container-fluid topnav" id="navfluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sky Aerosol Analyzer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigationbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#map" id="inicio">Map</a>
+                    </li>
+                    <li><a href="#about" id="sobre">About Sky Aerosol Analyzer</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <a name="map"></a>
+    <div id="container" class="my_map center-block"></div>
+<div id="controls">
+    <div class="text-center">
+        <h2 class="hspecial"> <span class="label label-default" id="date">2013-01-25</span></h2>
+    </div>
+    <br />
+    <div class="text-center">
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" id="lessYear" data-toggle="tooltip" data-placement="left" title="Previus year">
+                <i class="glyphicon glyphicon-step-backward"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="lessMonth" data-toggle="tooltip" data-placement="bottom" title="Previus month">
+                <i class="glyphicon glyphicon-fast-backward"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="less" data-toggle="tooltip" data-placement="bottom" title="Previus day">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="play" data-toggle="tooltip" data-placement="bottom" title="Animation">
+                <i class="glyphicon glyphicon-play"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="stop" data-toggle="tooltip" data-placement="bottom" title="Animation">
+                <i class="glyphicon glyphicon-stop"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="more" data-toggle="tooltip" data-placement="bottom" title="Next day">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="moreMonth" data-toggle="tooltip" data-placement="bottom" title="Next month">
+                <i class="glyphicon glyphicon-fast-forward"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="moreYear" data-toggle="tooltip" data-placement="right" title="Next year">
+                <i class="glyphicon glyphicon-step-forward"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!--
+    <div id="svg">
+        <p>Coas que pasan, en fin</p>
+    </div>
+-->
+    
+    
+    <a name="about"></a>
+    <div class="page-header text-center">
+        <h1>About <small>Sky Aerosol Analyzer</small></h1>
+        <br />
+        <h2>Overview</h2>
+        <p>The sky can give us much information , it will be analyzed usig the images that are sent from a mobile device and the result will be stored in a database. This database will be accesible through a web application.</p>
+        <br />
+        <h2>Description</h2>
+        <p>A colaborative Application to measure the aerosol particles in the air by images taken with a mobile device. Those images will be process and store into a server. The data extracted from images will be compared with the nearest <a href="http://aeronet.gsfc.nasa.gov/" target="_blank">AERONET</a> Station (AEROSOL ROBOTIC NETWORK). Both, data and images, will be available to public on a web.</p>
+    </div>
+
+    <p class="text-center">Fork me on GitHub</p>
+    <a href="https://github.com/davidgt/SkyAerosolAnalyzer" target="_blank" id="github_link">
+        <img src="img/GitHub-Mark-32px.png" class="img-responsive center-block" alt="github">
+    </a>
+
+    <br />
+    <br />
+
+    <!--    ALL THE SCRIPS-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/topojson/topojson.js"></script>
+    <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
+    <script src="js/skyAA.js"></script>
+</body>
+
+</html>
