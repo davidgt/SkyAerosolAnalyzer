@@ -19,12 +19,17 @@ COLL="days"
 usage_script()
 {
 cat << EOF
-	usage: $0 directory/with/data/from/aeronet/*
+	usage: ./skyAerosolAnalyzer_importer_mongodb.sh directory/with/data/from/aeronet/*
+		
+		In order to run, the script $0 must have execute permission
+		$ sudo chmod a+x skyAerosolAnalyzer_importer_mongodb.sh 
 EOF
 }
 
 
-if [ "$#" -eq 1 ]; then
+echo $#
+
+if [ "$#" -eq 0 ]; then
     echo "Illegal number of parameters"
     usage_script
 fi
