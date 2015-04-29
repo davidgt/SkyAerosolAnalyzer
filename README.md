@@ -23,10 +23,10 @@ In order to install the backend and serve your own data. You must install the ba
 
 In *Debian*:
 
-```$ sudo apt-get install curl
-$ curl -sL https://deb.nodesource.com/setup | bash -
-$ sudo apt-get install nodejs
-$ sudo npm -g install sails```
+```$ sudo apt-get install curl```
+```$ curl -sL https://deb.nodesource.com/setup | bash -```
+```$ sudo apt-get install nodejs```
+```$ sudo npm -g install sails```
 
 
 For other distros follow this link http://sailsjs.org/#!/getStarted
@@ -36,7 +36,7 @@ For other distros follow this link http://sailsjs.org/#!/getStarted
 
 In *Debian*:
 
-$ sudo  apt-get install mongodb
+```$ sudo  apt-get install mongodb```
 
 In order to have an install granulated  follow the instructions of this link http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian/ 
 In the other hand is highly recomended to run a 64bits version of mongoDB to have a good performance on import operations and run a production server
@@ -45,14 +45,14 @@ In the other hand is highly recomended to run a 64bits version of mongoDB to hav
 
 In *Debian*:
 
-$ sudo npm install forever -g
+```$ sudo npm install forever -g```
 
 ### Install SkyAerosolAnalyzer backend
 
-$ git clone https://github.com/davidgt/SkyAerosolAnalyzer.git
-$ cd SkyAerosolAnalyzer/skyAA_backend
-$ sudo npm install
-$ sudo npm install sails-mongo
+```$ git clone https://github.com/davidgt/SkyAerosolAnalyzer.git```
+```$ cd SkyAerosolAnalyzer/skyAA_backend```
+```$ sudo npm install```
+```$ sudo npm install sails-mongo```
 
 ### Populate database with AERONET data
 
@@ -60,18 +60,22 @@ First of all go to AERONET web page and download de Level 2.0 AOD Daily Average 
 
 Second unpackage the file downloaded.
 
-$ tar -xzvf INV_Level2_Daily_V2.tar.gz
+```$ tar -xzvf INV_Level2_Daily_V2.tar.gz```
 
 Go to the scripts directory, and there do:
 
-$ ./skyAerosolAnalyzer_importer_mongodb.sh INV_Level2_Daily_V2/INV/DUBOV/DAILY/*
+```$ ./skyAerosolAnalyzer_importer_mongodb.sh INV_Level2_Daily_V2/INV/DUBOV/DAILY/*```
+
+In order to execute the above script, skyAerosolAnalyzer_importer_mongodb.sh must have execute permission, to do that:
+
+```$ sudo chmod a+x skyAerosolAnalyzer_importer_mongodb.sh```
 
 ### Start SkyAnalyzer server
 
-$ cd skyAA_backend/
-$ sails lift
+```$ cd skyAA_backend/```
+```$ sails lift```
 
 
 Or to run the server non stop use [forever](https://github.com/foreverjs/forever):
 
-$ forever start skyAA_backend/app.js
+```$ forever start skyAA_backend/app.js```
