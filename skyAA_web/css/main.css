@@ -56,22 +56,41 @@
 }
 
 
+/*
 .chart .legend {
   fill: black;
   font: 14px sans-serif;
   text-anchor: start;
   font-size: 12px;
 }
+*/
 
 #chart text {
   fill: white;
-  font: 10px sans-serif;
+  font: 8px sans-serif;
   text-anchor: end;
+}
+
+#chart2 text {
+  fill: white;
+  font: 8px sans-serif;
+  text-anchor: end;
+}
+
+#chart1 text {
+  fill: white;
+  font: 8px sans-serif;
 }
 
 #chart .label {
   fill: white;
-  font: 14px sans-serif;
+  font: 9px sans-serif;
+  text-anchor: end;
+}
+
+#chart2 .label {
+  fill: white;
+  font: 9px sans-serif;
   text-anchor: end;
 }
 

@@ -1,3 +1,14 @@
+/*
+
+Sky Aerosol Analyzer 
+Aeronet Data visualization
+
+by Carlos Villanueva @carvilsi
+carvilsi@gmail.com
+
+MIT license 2015
+*/
+
 $(document).ready(function () {
 
 
@@ -7,8 +18,8 @@ $(document).ready(function () {
 
     var loo;
 
-    var ip = "localhost"; // ip of server with skyAerosol API
-//    var ip = "192.168.1.106"; // ip of server with skyAerosol API
+    var ip = "localhost"; // ip of server with skyAerosol API (localhost only for development porpuses)
+    //    var ip = "192.168.1.106"; // ip of server with skyAerosol API
     var port = "1337"; // port of server with skyAerosol API
 
     var dta; // to store data
@@ -18,12 +29,9 @@ $(document).ready(function () {
     var map = new Datamap({
         element: document.getElementById('container'),
         responsive: true,
-//                width: 900,
-//                heiht: 500,
+        //                width: 900,
+        //                heiht: 500,
         fills: {
-            //            defaulFill: '#FFFFFF',
-//            defaulFill: 'green',
-            //            defaulFill: '#303030',
             level0: '#B0B0B0', // no data
             level1: '#BFFF00',
             level2: '#FFFF00',
@@ -48,19 +56,14 @@ $(document).ready(function () {
             hideAntarctica: false,
             borderWidth: 1,
             borderColor: '#FFFFFF'
-//            borderColor: '#303030'
-                //                        borderColor: '#FDFDFD'
         }
     });
-    
-    
+
+
 
     $(window).on('resize', function () {
         map.resize();
     });
-
-    // 246 datos 
-
 
     function drawPoints(data, date) {
         var datos = [];
@@ -75,71 +78,7 @@ $(document).ready(function () {
         }
         map.bubbles(data, {
             popupTemplate: function (geo, data) {
-
                 dta = data;
-                //                console.log(dta);
-                //                tem();
-
-                //                var svgData = tem();
-                //                
-                //                console.log(svgData);
-                //                
-                //                return svgData;
-
-                //                var svgData = tem();
-                //                return [
-                //                    
-                //                        '<div class="hoverinfo">Location: ' + data.Locations,
-                //                            '<br/>PI: ' + data.PI,
-                //
-                //// Esto de sacar aquí los datos de esta manera hay que cambiarlo por algo más elegante
-                //
-                //                        '<br/>Longitude: ' + data['longitude'],
-                //                        '<br/>Latitude: ' + data['latitude'],
-                //                        '<br/><strong>AOT_1640: </strong>' + data['AOT_1640'],
-                //                        '<br/><strong>870-440AngstromParam.[AOTExt]-Total: </strong>' + data['870-440AngstromParam.[AOTExt]-Total'],
-                //                        '<br/><strong>N[870-440AngstromParam.[AOTAbsp]-Total]: </strong>' + data['N[870-440AngstromParam.[AOTAbsp]-Total]'],
-                //                        '<br/><strong>870-440AngstromParam.[AOTAbsp]: </strong>' + data['870-440AngstromParam.[AOTAbsp]'],
-                //
-                //                        '<br/>AOTExt1022-C: ' + data['AOTExt1022-C'] + '  0.05: ' + data['0.05'] + '  VolCon-C: ' + data['VolCon-C'] + '  N[AOT_555]: ' + data['N[AOT_555]'] + '  N[AOTAbsp868-T]: ' + data['N[AOTAbsp868-T]'] + '  N[0.439173]: ' + data['N[0.439173]'] + '  N[UpwardFlux](BOA): ' + data['N[UpwardFlux](BOA)'],
-                //'<br/>latitude: ' + data['latitude'] + '  870-440AngstromParam.[AOTExt]-Total: ' + data['870-440AngstromParam.[AOTExt]-Total'] + '  0.065604: ' + data['0.065604'] + '  EffRad-C: ' + data['EffRad-C'] + '  N[AOT_551]: ' + data['N[AOT_551]'] + '  N[AOTAbsp1022-T]: ' + data['N[AOTAbsp1022-T]'] + '  N[0.576227]: ' + data['N[0.576227]'] + '  N[UpwardFlux](TOA): ' + data['N[UpwardFlux](TOA)'],
-                //'<br/>elev: ' + data['elev'] + '  SSA440-T: ' + data['SSA440-T'] + '  0.086077: ' + data['0.086077'] + '  VolMedianRad-C: ' + data['VolMedianRad-C'] + '  N[AOT_532]: ' + data['N[AOT_532]'] + '  N[870-440AngstromParam.[AOTAbsp]-Total]: ' + data['N[870-440AngstromParam.[AOTAbsp]-Total]'] + '  N[0.756052]: ' + data['N[0.756052]'] + '  N[RadiativeForcing](BOA): ' + data['N[RadiativeForcing](BOA)'],
-                //'<br/>AOT_1640: ' + data['AOT_1640'] + '  SSA675-T: ' + data['SSA675-T'] + '  0.112939: ' + data['0.112939'] + '  StdDev-C: ' + data['StdDev-C'] + '  N[AOT_531]: ' + data['N[AOT_531]'] + '  N[REFR(440)]: ' + data['N[REFR(440)]'] + '  N[0.991996]: ' + data['N[0.991996]'] + '  N[RadiativeForcing](TOA): ' + data['N[RadiativeForcing](TOA)'],
-                //'<br/>AOT_1020: ' + data['AOT_1020'] + '  SSA868-T: ' + data['SSA868-T'] + '  0.148184: ' + data['0.148184'] + '  Altitude(BOA)(km): ' + data['Altitude(BOA)(km)'] + '  N[AOT_500]: ' + data['N[AOT_500]'] + '  N[REFR(675)]: ' + data['N[REFR(675)]'] + '  N[1.301571]: ' + data['N[1.301571]'] + '  N[ForcingEfficiency](BOA): ' + data['N[ForcingEfficiency](BOA)'],
-                //'<br/>AOT_870: ' + data['AOT_870'] + '  SSA1022-T: ' + data['SSA1022-T'] + '  0.194429: ' + data['0.194429'] + '  Altitude(TOA)(km): ' + data['Altitude(TOA)(km)'] + '  N[AOT_490]: ' + data['N[AOT_490]'] + '  N[REFR(868)]: ' + data['N[REFR(868)]'] + '  N[1.707757]: ' + data['N[1.707757]'] + '  N[ForcingEfficiency](TOA): ' + data['N[ForcingEfficiency](TOA)'],
-                //'<br/>AOT_675: ' + data['AOT_675'] + '  AOTAbsp440-T: ' + data['AOTAbsp440-T'] + '  0.255105: ' + data['0.255105'] + '  DownwardFlux(BOA): ' + data['DownwardFlux(BOA)'] + '  N[AOT_443]: ' + data['N[AOT_443]'] + '  N[REFR(1022)]: ' + data['N[REFR(1022)]'] + '  N[2.240702]: ' + data['N[2.240702]'] + '  N[DownwardFlux440-T]: ' + data['N[DownwardFlux440-T]'],
-                //'<br/>AOT_667: ' + data['AOT_667'] + '  AOTAbsp675-T: ' + data['AOTAbsp675-T'] + '  0.334716: ' + data['0.334716'] + '  DownwardFlux(TOA): ' + data['DownwardFlux(TOA)'] + '  N[AOT_440]: ' + data['N[AOT_440]'] + '  N[REFI(440)]: ' + data['N[REFI(440)]'] + '  N[2.939966]: ' + data['N[2.939966]'] + '  N[DownwardFlux675-T]: ' + data['N[DownwardFlux675-T]'],
-                //'<br/>AOT_555: ' + data['AOT_555'] + '  AOTAbsp868-T: ' + data['AOTAbsp868-T'] + '  0.439173: ' + data['0.439173'] + '  UpwardFlux(BOA): ' + data['UpwardFlux(BOA)'] + '  N[AOT_412]: ' + data['N[AOT_412]'] + '  N[REFI(675)]: ' + data['N[REFI(675)]'] + '  N[3.857452]: ' + data['N[3.857452]'] + '  N[DownwardFlux868-T]: ' + data['N[DownwardFlux868-T]'],
-                //'<br/>AOT_551: ' + data['AOT_551'] + '  AOTAbsp1022-T: ' + data['AOTAbsp1022-T'] + '  0.576227: ' + data['0.576227'] + '  UpwardFlux(TOA): ' + data['UpwardFlux(TOA)'] + '  N[AOT_380]: ' + data['N[AOT_380]'] + '  N[REFI(868)]: ' + data['N[REFI(868)]'] + '  N[5.061260]: ' + data['N[5.061260]'] + '  N[DownwardFlux1022-T]: ' + data['N[DownwardFlux1022-T]'],
-                //'<br/>AOT_532: ' + data['AOT_532'] + '  870-440AngstromParam.[AOTAbsp]: ' + data['870-440AngstromParam.[AOTAbsp]'] + '  0.756052: ' + data['0.756052'] + '  RadiativeForcing(BOA): ' + data['RadiativeForcing(BOA)'] + '  N[AOT_340]: ' + data['N[AOT_340]'] + '  N[REFI(1022)]: ' + data['N[REFI(1022)]'] + '  N[6.640745]: ' + data['N[6.640745]'] + '  N[UpwardFlux440-T]: ' + data['N[UpwardFlux440-T]'],
-                //'<br/>AOT_531: ' + data['AOT_531'] + '  REFR(440): ' + data['REFR(440)'] + '  0.991996: ' + data['0.991996'] + '  RadiativeForcing(TOA): ' + data['RadiativeForcing(TOA)'] + '  N[Water(cm)]: ' + data['N[Water(cm)]'] + '  N[ASYM440-T]: ' + data['N[ASYM440-T]'] + '  N[8.713145]: ' + data['N[8.713145]'] + '  N[UpwardFlux675-T]: ' + data['N[UpwardFlux675-T]'],
-                //'<br/>AOT_500: ' + data['AOT_500'] + '  REFR(675): ' + data['REFR(675)'] + '  1.301571: ' + data['1.301571'] + '  ForcingEfficiency(BOA): ' + data['ForcingEfficiency(BOA)'] + '  N[AOTExt440-T]: ' + data['N[AOTExt440-T]'] + '  N[ASYM675-T]: ' + data['N[ASYM675-T]'] + '  N[11.432287]: ' + data['N[11.432287]'] + '  N[UpwardFlux868-T]: ' + data['N[UpwardFlux868-T]'],
-                //'<br/>AOT_490: ' + data['AOT_490'] + '  REFR(868): ' + data['REFR(868)'] + '  1.707757: ' + data['1.707757'] + '  ForcingEfficiency(TOA): ' + data['ForcingEfficiency(TOA)'] + '  N[AOTExt675-T]: ' + data['N[AOTExt675-T]'] + '  N[ASYM868-T]: ' + data['N[ASYM868-T]'] + '  N[15.000000]: ' + data['N[15.000000]'] + '  N[UpwardFlux1022-T]: ' + data['N[UpwardFlux1022-T]'],
-                //'<br/>AOT_443: ' + data['AOT_443'] + '  REFR(1022): ' + data['REFR(1022)'] + '  2.240702: ' + data['2.240702'] + '  DownwardFlux440-T: ' + data['DownwardFlux440-T'] + '  N[AOTExt868-T]: ' + data['N[AOTExt868-T]'] + '  N[ASYM1022-T]: ' + data['N[ASYM1022-T]'] + '  N[Inflection_Point[um]]: ' + data['N[Inflection_Point[um]]'] + '  N[DiffuseFlux440-T]: ' + data['N[DiffuseFlux440-T]'],
-                //'<br/>AOT_440: ' + data['AOT_440'] + '  REFI(440): ' + data['REFI(440)'] + '  2.939966: ' + data['2.939966'] + '  DownwardFlux675-T: ' + data['DownwardFlux675-T'] + '  N[AOTExt1022-T]: ' + data['N[AOTExt1022-T]'] + '  N[ASYM440-F]: ' + data['N[ASYM440-F]'] + '  N[VolCon-T]: ' + data['N[VolCon-T]'] + '  N[DiffuseFlux675-T]: ' + data['N[DiffuseFlux675-T]'],
-                //'<br/>AOT_412: ' + data['AOT_412'] + '  REFI(675): ' + data['REFI(675)'] + '  3.857452: ' + data['3.857452'] + '  DownwardFlux868-T: ' + data['DownwardFlux868-T'] + '  N[AOTExt440-F]: ' + data['N[AOTExt440-F]'] + '  N[ASYM675-F]: ' + data['N[ASYM675-F]'] + '  N[EffRad-T]: ' + data['N[EffRad-T]'] + '  N[DiffuseFlux868-T]: ' + data['N[DiffuseFlux868-T]'],
-                //'<br/>AOT_380: ' + data['AOT_380'] + '  REFI(868): ' + data['REFI(868)'] + '  5.06126: ' + data['5.06126'] + '  DownwardFlux1022-T: ' + data['DownwardFlux1022-T'] + '  N[AOTExt675-F]: ' + data['N[AOTExt675-F]'] + '  N[ASYM868-F]: ' + data['N[ASYM868-F]'] + '  N[VolMedianRad-T]: ' + data['N[VolMedianRad-T]'] + '  N[DiffuseFlux1022-T]: ' + data['N[DiffuseFlux1022-T]'],
-                //'<br/>AOT_340: ' + data['AOT_340'] + '  REFI(1022): ' + data['REFI(1022)'] + '  6.640745: ' + data['6.640745'] + '  UpwardFlux440-T: ' + data['UpwardFlux440-T'] + '  N[AOTExt868-F]: ' + data['N[AOTExt868-F]'] + '  N[ASYM1022-F]: ' + data['N[ASYM1022-F]'] + '  N[StdDev-T]: ' + data['N[StdDev-T]'] + '  last_processing_date(mm/dd/yyyy): ' + data['last_processing_date(mm/dd/yyyy)'],
-                //'<br/>Water(cm): ' + data['Water(cm)'] + '  ASYM440-T: ' + data['ASYM440-T'] + '  8.713145: ' + data['8.713145'] + '  UpwardFlux675-T: ' + data['UpwardFlux675-T'] + '  N[AOTExt1022-F]: ' + data['N[AOTExt1022-F]'] + '  N[ASYM440-C]: ' + data['N[ASYM440-C]'] + '  N[VolCon-F]: ' + data['N[VolCon-F]'] + '  alm_type: ' + data['alm_type'],
-                //'<br/>AOTExt440-T: ' + data['AOTExt440-T'] + '  ASYM675-T: ' + data['ASYM675-T'] + '  11.432287: ' + data['11.432287'] + '  UpwardFlux868-T: ' + data['UpwardFlux868-T'] + '  N[AOTExt440-C]: ' + data['N[AOTExt440-C]'] + '  N[ASYM675-C]: ' + data['N[ASYM675-C]'] + '  N[EffRad-F]: ' + data['N[EffRad-F]'] + '  DATA_TYPE: ' + data['DATA_TYPE'],
-                //'<br/>AOTExt675-T: ' + data['AOTExt675-T'] + '  ASYM868-T: ' + data['ASYM868-T'] + '  15: ' + data['15'] + '  UpwardFlux1022-T: ' + data['UpwardFlux1022-T'] + '  N[AOTExt675-C]: ' + data['N[AOTExt675-C]'] + '  N[ASYM868-C]: ' + data['N[ASYM868-C]'] + '  N[VolMedianRad-F]: ' + data['N[VolMedianRad-F]'],
-                //'<br/>AOTExt868-T: ' + data['AOTExt868-T'] + '  ASYM1022-T: ' + data['ASYM1022-T'] + '  Inflection_Point[um]: ' + data['Inflection_Point[um]'] + '  DiffuseFlux440-T: ' + data['DiffuseFlux440-T'] + '  N[AOTExt868-C]: ' + data['N[AOTExt868-C]'] + '  N[ASYM1022-C]: ' + data['N[ASYM1022-C]'] + '  N[StdDev-F]: ' + data['N[StdDev-F]'],
-                //'<br/>AOTExt1022-T: ' + data['AOTExt1022-T'] + '  ASYM440-F: ' + data['ASYM440-F'] + '  VolCon-T: ' + data['VolCon-T'] + '  DiffuseFlux675-T: ' + data['DiffuseFlux675-T'] + '  N[AOTExt1022-C]: ' + data['N[AOTExt1022-C]'] + '  N[0.050000]: ' + data['N[0.050000]'] + '  N[VolCon-C]: ' + data['N[VolCon-C]'],
-                //'<br/>AOTExt440-F: ' + data['AOTExt440-F'] + '  ASYM675-F: ' + data['ASYM675-F'] + '  EffRad-T: ' + data['EffRad-T'] + '  DiffuseFlux868-T: ' + data['DiffuseFlux868-T'] + '  N[870-440AngstromParam.[AOTExt]-Total]: ' + data['N[870-440AngstromParam.[AOTExt]-Total]'] + '  N[0.065604]: ' + data['N[0.065604]'] + '  N[EffRad-C]: ' + data['N[EffRad-C]'],
-                //'<br/>AOTExt675-F: ' + data['AOTExt675-F'] + '  ASYM868-F: ' + data['ASYM868-F'] + '  VolMedianRad-T: ' + data['VolMedianRad-T'] + '  DiffuseFlux1022-T: ' + data['DiffuseFlux1022-T'] + '  N[SSA440-T]: ' + data['N[SSA440-T]'] + '  N[0.086077]: ' + data['N[0.086077]'] + '  N[VolMedianRad-C]: ' + data['N[VolMedianRad-C]'],
-                //'<br/>AOTExt868-F: ' + data['AOTExt868-F'] + '  ASYM1022-F: ' + data['ASYM1022-F'] + '  StdDev-T: ' + data['StdDev-T'] + '  N[AOT_1640]: ' + data['N[AOT_1640]'] + '  N[SSA675-T]: ' + data['N[SSA675-T]'] + '  N[0.112939]: ' + data['N[0.112939]'] + '  N[StdDev-C]: ' + data['N[StdDev-C]'],
-                //'<br/>AOTExt1022-F: ' + data['AOTExt1022-F'] + '  ASYM440-C: ' + data['ASYM440-C'] + '  VolCon-F: ' + data['VolCon-F'] + '  N[AOT_1020]: ' + data['N[AOT_1020]'] + '  N[SSA868-T]: ' + data['N[SSA868-T]'] + '  N[0.148184]: ' + data['N[0.148184]'] + '  N[Altitude](BOA)(km): ' + data['N[Altitude](BOA)(km)'],
-                //'<br/>AOTExt440-C: ' + data['AOTExt440-C'] + '  ASYM675-C: ' + data['ASYM675-C'] + '  EffRad-F: ' + data['EffRad-F'] + '  N[AOT_870]: ' + data['N[AOT_870]'] + '  N[SSA1022-T]: ' + data['N[SSA1022-T]'] + '  N[0.194429]: ' + data['N[0.194429]'] + '  N[Altitude](TOA)(km): ' + data['N[Altitude](TOA)(km)'],
-                //'<br/>AOTExt675-C: ' + data['AOTExt675-C'] + '  ASYM868-C: ' + data['ASYM868-C'] + '  VolMedianRad-F: ' + data['VolMedianRad-F'] + '  N[AOT_675]: ' + data['N[AOT_675]'] + '  N[AOTAbsp440-T]: ' + data['N[AOTAbsp440-T]'] + '  N[0.255105]: ' + data['N[0.255105]'] + '  N[DownwardFlux](BOA): ' + data['N[DownwardFlux](BOA)'],
-                //'<br/>AOTExt868-C: ' + data['AOTExt868-C'] + '  ASYM1022-C: ' + data['ASYM1022-C'] + '  StdDev-F: ' + data['StdDev-F'] + '  N[AOT_667]: ' + data['N[AOT_667]'] + '  N[AOTAbsp675-T]: ' + data['N[AOTAbsp675-T]'] + '  N[0.334716]: ' + data['N[0.334716]'] + '  N[DownwardFlux](TOA): ' + data['N[DownwardFlux](TOA)'],
-                //
-                //
-                //
-                //
-                //
-                //
-                //                        '</div>'
-                //                    ].join('');
             }
         });
         $('#date').text(date).trigger('change');
@@ -245,10 +184,10 @@ $(document).ready(function () {
     });
 
     //@todo: limitar las fechas 
-    
+
     function testDates() {
-//        console.log('mi ' + minDate);
-//        console.log('Ma ' + date);
+        //        console.log('mi ' + minDate);
+        //        console.log('Ma ' + date);
         if (date < minDate) {
             console.log('me paso de la fecha abajo');
         }
@@ -285,63 +224,10 @@ $(document).ready(function () {
         $('#play').show();
         $('#stop').hide();
         clearInterval(loo);
-        //        init();        
     };
 
-
-
-    function drawData(data) {
-
-        var width = 960,
-            height = 500,
-            radius = Math.min(width, height) / 2;
-
-        var color = d3.scale.ordinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-        var arc = d3.svg.arc()
-            .outerRadius(radius - 10)
-            .innerRadius(radius - 70);
-
-        var pie = d3.layout.pie()
-            .sort(null)
-            .value(function (d) {
-                return d.population;
-            });
-
-        var svg = d3.select("svg.datamap")
-            .append("g")
-            .attr("transform", "translate(" + $('#container').width() / 2 + "," + $('#container').width() / 4 + ")")
-            .attr("id", "dataCircle");
-
-        var g = svg.selectAll(".arc")
-            .data(pie(data))
-            .enter().append("g")
-            .attr("class", "arc")
-            .style("opacity", .8);
-
-        g.append("path")
-            .attr("d", arc)
-            .style("fill", function (d) {
-                return color(d.data.age);
-            });
-
-        g.append("text")
-            .attr("transform", function (d) {
-                return "translate(" + arc.centroid(d) + ")";
-            })
-            .attr("dy", ".35em")
-            .style("text-anchor", "middle")
-            .text(function (d) {
-                return d.data.age;
-            });
-
-        return svg;
-
-    }
-
     $(map.svg[0][0]).on('mouseover', '.bubbles', function (e) {
-//    $(map.svg[0][0]).on('click', '.bubbles', function (e) {
+        //    $(map.svg[0][0]).on('click', '.bubbles', function (e) {
 
         var dt = e.target.__data__;
 
@@ -354,13 +240,35 @@ $(document).ready(function () {
         var arrayKeys = Object.keys(dt);
         var dataValues = new Array;
         var dataKeys = new Array;
-        
-        for (var i = 10; i <= arrayValues.length - 9 ; i++) {
+        var dataValuesH = new Array;
+        var dataKeysH = new Array;
+        var dataValuesH1 = new Array;
+        var dataKeysH1 = new Array;
+
+        // filtering first certain not interesting values
+        // then filtering string stuff
+        // catching only numbers
+        // get the values > 50 and 
+        // then < 50 to visualize with another chart
+
+        for (var i = 10; i <= arrayValues.length - 9; i++) {
             if (typeof arrayValues[i] !== "string") {
                 if (typeof arrayValues[i] === "number") {
-                    if (arrayValues[i] > 50) {
+                    if (arrayValues[i] > 20) {
                         dataValues.push(arrayValues[i]);
                         dataKeys.push(arrayKeys[i]);
+                    } else {
+                        if (arrayValues[i] > 0 && arrayValues[i] < 1) {
+                            dataValuesH.push(arrayValues[i]);
+                            dataKeysH.push(arrayKeys[i]);
+                        }
+                        if (arrayValues[i] >= 1 && arrayValues[i] < 20) {
+                            if (arrayValues[i] !== arrayValues[i+1]){
+                                dataValuesH1.push(arrayValues[i]);
+                                dataKeysH1.push(arrayKeys[i]);    
+                            }
+                            
+                        }
                     }
                 }
             }
@@ -370,19 +278,23 @@ $(document).ready(function () {
         dataBar.values = dataValues;
         dataBar.labels = dataKeys;
 
+        var dataBarH = {};
+        dataBarH.values = dataValuesH;
+        dataBarH.labels = dataKeysH;
+
+        var dataBarH1 = {};
+        dataBarH1.values = dataValuesH1;
+        dataBarH1.labels = dataKeysH1;
+
         drawVertical(dataBar);
-//        drawData(dataBar);
+        drawVertical1(dataBarH1);
+        drawHorizontal(dataBarH);
     });
 
-    //    $(map.svg[0][0]).on('mouseover', '.bubbles', function (e) {
-    ////        console.log(dta);
-    //        tem();
-    //    });
-
     $(map.svg[0][0]).on('mouseout', '.bubbles', function (e) {
-//        d3.select("#dataCircle").remove();
-//        d3.select(".chart").remove();
         d3.select("#chart").remove();
+        d3.select("#chart1").remove();
+        d3.select("#chart2").remove();
     });
 
     function drawVertical(data) {
@@ -413,15 +325,15 @@ $(document).ready(function () {
 
         // Specify the chart area and dimensions
         var chart = d3.select("svg.datamap")
-        .append("g")
-        .attr("id","chart");
+            .append("g")
+            .attr("id", "chart");
 
         // Create bars
         var bar = chart.selectAll("g")
             .data(data.values)
             .enter().append("g")
             .attr("transform", function (d, i) {
-                return "translate(" + (spaceForLabels + 20)  + "," + (150 + i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.values.length))) + ")";
+                return "translate(" + (spaceForLabels + 20) + "," + (150 + i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.values.length))) + ")";
             });
 
         // Create rectangles of the correct width
@@ -456,23 +368,170 @@ $(document).ready(function () {
             .text(function (d, i) {
                 return data.labels[i]
             });
-        
+
 
         chart.append("g")
             .attr("class", "y axis")
-//            .attr("transform", "translate(" + 10 + ", " + 10 + ")")
-        .attr("transform", "translate(" + (spaceForLabels + 20) + ", " + (-gapBetweenGroups/2 + 150) + ")")
+            .attr("transform", "translate(" + (spaceForLabels + 20) + ", " + (-gapBetweenGroups / 2 + 150) + ")")
             .call(yAxis);
-        
+
         chart.style("opacity", .8);
-        
-//        chart.attr("fill","pink");
-//        bar.append("rect")
-//            .attr("width", "100%")
-//            .attr("height", "100%")
-//            .attr("fill", "black");
     }
-  
+    
+    function drawVertical1(data) {
+
+        var chartWidth = 300,
+            barHeight = 12,
+            groupHeight = barHeight,
+            gapBetweenGroups = 2,
+            spaceForLabels = 150,
+            spaceForLegend = 150;
+
+        // Color scale
+        var color = d3.scale.category20();
+        var chartHeight = barHeight * data.labels.length + gapBetweenGroups * data.labels.length;
+
+        var x = d3.scale.linear()
+            .domain([0, d3.max(data.values)])
+            .range([0, chartWidth]);
+
+        var y = d3.scale.linear()
+            .range([chartHeight + gapBetweenGroups, 0]);
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .tickFormat('')
+            .tickSize(0)
+            .orient("right");
+
+        // Specify the chart area and dimensions
+        var chart = d3.select("svg.datamap")
+            .append("g")
+            .attr("id", "chart2");
+
+        // Create bars
+        var bar = chart.selectAll("g")
+            .data(data.values)
+            .enter().append("g")
+            .attr("transform", function (d, i) {
+                return "translate(" + (spaceForLabels + 20 + 600) + "," + (150 + i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.values.length))) + ")";
+            });
+
+        // Create rectangles of the correct width
+        bar.append("rect")
+            .attr("fill", function (d, i) {
+                return color(i % data.values.length);
+            })
+            .attr("class", "bar")
+            .attr("width", x)
+            .attr("height", barHeight - 1);
+
+        // Add text label in bar
+        bar.append("text")
+            .attr("x", function (d) {
+                return x(d) - 3;
+            })
+            .attr("y", barHeight / 2)
+            .attr("fill", "red")
+            .attr("dy", ".35em")
+            .text(function (d) {
+                return d;
+            });
+
+        // Draw labels
+        bar.append("text")
+            .attr("class", "label")
+            .attr("x", function (d) {
+                return -10;
+            })
+            .attr("y", groupHeight / 2)
+            .attr("dy", ".35em")
+            .text(function (d, i) {
+                return data.labels[i]
+            });
+
+
+        chart.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(" + (spaceForLabels + 20 + 600) + ", " + (-gapBetweenGroups / 2 + 150) + ")")
+            .call(yAxis);
+
+        chart.style("opacity", .8);
+    }
+
+
+    function drawHorizontal(data) {
+
+        
+        
+        var color = d3.scale.category20();
+
+        var width = 1000,
+            height = 100;
+
+        var y = d3.scale.linear()
+            .range([height, 0]);
+
+        var x = d3.scale.linear()
+            .range([0, width], .1);
+
+        var chart = d3.select("svg.datamap")
+                    .append("g")
+                    .attr("id", "chart1");
+        
+        y.domain([0, d3.max(data.values, function (d) {
+            return d;
+        })]);
+
+        var barWidth = width / data.values.length;
+
+        var bar = chart.selectAll("g")
+            .data(data.values)
+            .enter().append("g")
+            .attr("transform", function (d, i) {
+                return "translate(" + i * (barWidth + 4) + ",0)";
+            });
+
+        bar.append("rect")
+            .attr("fill", function (d, i) {
+                return color(i % data.values.length);
+            })
+            .attr("y", function (d) {
+                return y(d);
+            })
+            .attr("height", function (d) {
+                return height - y(d);
+            })
+            .attr("width", barWidth);
+
+                    bar.append("text")
+                        .attr("x", (barWidth) / 2)
+                        .attr("y", function (d) {
+                            return y(d) + 3;
+                        })
+                        .attr("dy", ".75em")
+                        .attr("style", "fill: white; writing-mode: tb; glyph-orientation-vertical: 0;letter-spacing: -2px")
+                        .text(function (d) {
+                            return d;
+                        });
+
+        bar.append("text")
+            .attr("x", barWidth / 2)
+            .attr("y", function (d) {
+                return height;
+            })
+            .attr("dy", ".75em")
+            .attr("style", "fill: white; writing-mode: tb; glyph-orientation-vertical: 0;letter-spacing: -2px")
+            .text(function (d, i) {
+                return data.labels[i];
+            });
+        
+        // possition
+        chart.attr("transform", "translate(0,400)");
+
+        chart.style("opacity", .8);
+    }
+
     map.legend();
 
 })
