@@ -28,7 +28,6 @@ In *Debian*:
 ```$ curl -sL https://deb.nodesource.com/setup | bash -```
 
 ```$ sudo apt-get install nodejs```
-
 ```$ sudo npm -g install sails```
 
 

@@ -533,5 +533,19 @@ $(document).ready(function () {
     }
 
     map.legend();
+    
+    
+    addMoreThingsToLegend();
+    
+    function addMoreThingsToLegend() {
+        var legend = d3.select(".datamaps-legend")
+                    .append("g")
+                    .attr("id", "legendText");
+        legend.append("text")
+                .html("870-440AngstromParam.[AOTExt]-Total <br/>");
+        legend.append("text")
+                .html("level0 N/A     level1 < 0.5     level2 [0.5,1]     level3 [1,1.5]     level4 > 1.5");
+    }
+    
 
 })
