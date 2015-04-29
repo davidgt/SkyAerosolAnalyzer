@@ -24,8 +24,11 @@ In order to install the backend and serve your own data. You must install the ba
 In *Debian*:
 
 ```$ sudo apt-get install curl```
+
 ```$ curl -sL https://deb.nodesource.com/setup | bash -```
+
 ```$ sudo apt-get install nodejs```
+
 ```$ sudo npm -g install sails```
 
 
@@ -50,8 +53,11 @@ In *Debian*:
 ### Install SkyAerosolAnalyzer backend
 
 ```$ git clone https://github.com/davidgt/SkyAerosolAnalyzer.git```
+
 ```$ cd SkyAerosolAnalyzer/skyAA_backend```
+
 ```$ sudo npm install```
+
 ```$ sudo npm install sails-mongo```
 
 ### Populate database with AERONET data
@@ -73,6 +79,7 @@ In order to execute the above script, skyAerosolAnalyzer_importer_mongodb.sh mus
 ### Start SkyAnalyzer server
 
 ```$ cd skyAA_backend/```
+
 ```$ sails lift```
 
 
