@@ -18,8 +18,8 @@ $(document).ready(function () {
 
     var loo;
 
-    var ip = "localhost"; // ip of server with skyAerosol API (localhost only for development porpuses)
-    //    var ip = "192.168.1.106"; // ip of server with skyAerosol API
+//    var ip = "5.196.11.71"; // ip of server with skyAerosol API (localhost only for development porpuses)
+    var ip = "localhost"; // ip local for developing porpuses or running this stuff on your local deploy
     var port = "1337"; // port of server with skyAerosol API
 
     var dta; // to store data
@@ -29,8 +29,8 @@ $(document).ready(function () {
     var map = new Datamap({
         element: document.getElementById('container'),
         responsive: true,
-        //                width: 900,
-        //                heiht: 500,
+//                        width: 900,
+//                        heiht: 500,
         fills: {
             level0: '#B0B0B0', // no data
             level1: '#BFFF00',
@@ -55,7 +55,8 @@ $(document).ready(function () {
         geographyConfig: {
             hideAntarctica: false,
             borderWidth: 1,
-            borderColor: '#FFFFFF'
+            borderColor: '#606060'
+//            borderColor: '#FFFFFF'
         }
     });
 
@@ -94,6 +95,7 @@ $(document).ready(function () {
             }).fail(function () {
             console.error('algo fue mal :S');
         });
+        
     }
 
     init();
@@ -230,7 +232,7 @@ $(document).ready(function () {
         //    $(map.svg[0][0]).on('click', '.bubbles', function (e) {
 
         var dt = e.target.__data__;
-
+        
         var arrayValues = new Array;
 
         $.map(dt, function (value, index) {
@@ -244,6 +246,7 @@ $(document).ready(function () {
         var dataKeysH = new Array;
         var dataValuesH1 = new Array;
         var dataKeysH1 = new Array;
+        
 
         // filtering first certain not interesting values
         // then filtering string stuff
@@ -285,16 +288,27 @@ $(document).ready(function () {
         var dataBarH1 = {};
         dataBarH1.values = dataValuesH1;
         dataBarH1.labels = dataKeysH1;
+        
+        var locales = {
+            location: dt.Locations,
+            lat: dt.lat,
+            long: dt.long,
+            elev: dt.elev,
+            author: dt.PI,
+            param: dt['870-440AngstromParam.[AOTExt]-Total']
+        }
 
         drawVertical(dataBar);
         drawVertical1(dataBarH1);
         drawHorizontal(dataBarH);
+        drawLocationAndCreator(locales);
     });
 
     $(map.svg[0][0]).on('mouseout', '.bubbles', function (e) {
         d3.select("#chart").remove();
         d3.select("#chart1").remove();
         d3.select("#chart2").remove();
+        d3.select("#legendLocation").remove();
     });
 
     function drawVertical(data) {
@@ -458,12 +472,41 @@ $(document).ready(function () {
 
         chart.style("opacity", .8);
     }
+    
+    function drawLocationAndCreator(data) {
+        var legend = d3.select("svg.datamap")
+                    .append("g")
+                    .attr("id", "legendLocation");        
+        
+        legend.append("text")
+                .attr("x",450)
+                .attr("y",95)
+                .text("Location: " + data.location);
+                
+        legend.append("text")
+                .attr("x",450)
+                .attr("y",120)
+                .text("Latitude: " + data.lat);
+        
+        legend.append("text")
+                .attr("x",450)
+                .attr("y",140)
+                .text("Longitude: " + data.long);
+                
+        legend.append("text")
+                .attr("x",10)
+                .attr("y",680)
+                .text("Principal Investigator(s): " + data.author);
+        
+        legend.append("text")
+                .attr("x",650)
+                .attr("y",140)
+                .text("870-440AngstromParam.[AOTExt]-Total: " + data.param);
+    }
 
 
     function drawHorizontal(data) {
 
-        
-        
         var color = d3.scale.category20();
 
         var width = 1000,
@@ -546,6 +589,4 @@ $(document).ready(function () {
         legend.append("text")
                 .html("level0 N/A     level1 < 0.5     level2 [0.5,1]     level3 [1,1.5]     level4 > 1.5");
     }
-    
-
 })
