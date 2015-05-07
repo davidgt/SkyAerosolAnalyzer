@@ -6,6 +6,12 @@ The sky can give us much information , it  will be analyzed usig the images that
 ## Description
 A colaborative Application to measure the aerosol particles in the air by images taken with a mobile device. Those  images will be process and store into a server. The data extracted from images will be compared with the nearest AERONET Station (AEROSOL ROBOTIC NETWORK). Both, data and images, will be available to public on a web.
 
+## Demo
+
+The demo online of [SkyAerosol_API](http://www.aerosolanalyzer.tk/) with the Daily Average of AERONET 
+
+http://www.aerosolanalyzer.tk/
+
 ## The parts of softare
 
 This are the parts of the whole project:
@@ -57,7 +63,6 @@ In *Debian*:
 
 ```$ sudo npm install```
 
-```$ sudo npm install sails-mongo```
 
 ### Populate database with AERONET data
 
@@ -85,3 +90,7 @@ In order to execute the above script, skyAerosolAnalyzer_importer_mongodb.sh mus
 Or to run the server non stop use [forever](https://github.com/foreverjs/forever):
 
 ```$ forever start skyAA_backend/app.js```
+
+In Debian case, if you want to add a service to start and stop the server, copy the script skyAerosol_service.sh located at scripts/ directory on this repository to /etc/init.d/ on your Debian, give it executions permission (command above). And if you wish to start on boot (to get more info about this subject of [booting](https://www.debian-administration.org/article/28/Making_scripts_run_at_boot_time_with_Debian) on Debian):
+
+``$ sudo update-rc.d skyAerosol_service.sh defaults```
