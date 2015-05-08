@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     var loo;
 
-//    var ip = "5.196.11.71"; // ip of server with skyAerosol API (localhost only for development porpuses)
+//    var ip = "178.32.221.212"; // ip of server with skyAerosol API (localhost only for development porpuses)
     var ip = "localhost"; // ip local for developing porpuses or running this stuff on your local deploy
     var port = "1337"; // port of server with skyAerosol API
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     var map = new Datamap({
         element: document.getElementById('container'),
-        responsive: true,
+        responsive: false,
 //                        width: 900,
 //                        heiht: 500,
         fills: {
@@ -55,7 +55,9 @@ $(document).ready(function () {
         geographyConfig: {
             hideAntarctica: false,
             borderWidth: 1,
-            borderColor: '#606060'
+            borderColor: '#606060',
+            highlightOnHover: false,
+            popupOnHover: false
 //            borderColor: '#FFFFFF'
         }
     });
@@ -88,10 +90,10 @@ $(document).ready(function () {
     //    Init the map with data of this day: "25:01:2013" --> 2004
 
     function init() {
-        date = new Date('2013-01-25'); //    YYYY-MM-DD
-        $.get('http://' + ip + ':' + port + '/days?where={"Date(dd-mm-yyyy)":%20"25:01:2013"}',
+        date = new Date('2013-04-14'); //    YYYY-MM-DD
+        $.get('http://' + ip + ':' + port + '/days?where={"Date(dd-mm-yyyy)":%20"14:04:2013"}',
             function (data) {
-                drawPoints(data, '2013-01-25');
+                drawPoints(data, '2013-04-14');
             }).fail(function () {
             console.error('algo fue mal :S');
         });
@@ -185,18 +187,22 @@ $(document).ready(function () {
         callData(myDay);
     });
 
-    //@todo: limitar las fechas 
-
+   
     function testDates() {
-        //        console.log('mi ' + minDate);
-        //        console.log('Ma ' + date);
+   
         if (date < minDate) {
             console.log('me paso de la fecha abajo');
+            $('#no-data').modal('show');
         }
         if (date > maxDate) {
             console.log('me paso de la fecha arriba');
+            $('#no-data').modal('show');
         }
     }
+    
+    $('#no-data').on('hidden.bs.modal', function (e) {
+        init();
+    })
 
     $('button.btn').on('click', function () {
         if ($('#stop').is(':visible')) {
@@ -480,28 +486,33 @@ $(document).ready(function () {
         
         legend.append("text")
                 .attr("x",450)
-                .attr("y",95)
+                .attr("y",45)
                 .text("Location: " + data.location);
                 
         legend.append("text")
                 .attr("x",450)
-                .attr("y",120)
-                .text("Latitude: " + data.lat);
+                .attr("y",70)
+                .text("Latitude: " + data.lat + "º");
         
         legend.append("text")
                 .attr("x",450)
-                .attr("y",140)
-                .text("Longitude: " + data.long);
+                .attr("y",95)
+                .text("Longitude: " + data.long + "º");
                 
         legend.append("text")
-                .attr("x",10)
-                .attr("y",680)
+                .attr("x",30)
+                .attr("y",130)
                 .text("Principal Investigator(s): " + data.author);
         
         legend.append("text")
                 .attr("x",650)
-                .attr("y",140)
+                .attr("y",45)
                 .text("870-440AngstromParam.[AOTExt]-Total: " + data.param);
+        
+        legend.append("text")
+                .attr("x",650)
+                .attr("y",70)
+                .text("Altitude: " + data.elev + " m");
     }
 
 
@@ -509,7 +520,7 @@ $(document).ready(function () {
 
         var color = d3.scale.category20();
 
-        var width = 1000,
+        var width = 900,
             height = 100;
 
         var y = d3.scale.linear()
@@ -570,7 +581,7 @@ $(document).ready(function () {
             });
         
         // possition
-        chart.attr("transform", "translate(0,400)");
+        chart.attr("transform", "translate(15,300)");
 
         chart.style("opacity", .8);
     }

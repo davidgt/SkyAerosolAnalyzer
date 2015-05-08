@@ -19,6 +19,8 @@
 <body>
     <!--      NAV BAR -->
 
+
+
     <nav class="navbar navbar-default navbar-fixed-top topnav barra" role="navigation">
         <div class="container-fluid topnav" id="navfluid">
             <div class="navbar-header">
@@ -40,46 +42,54 @@
             </div>
 
         </div>
-    </nav>
-    <a name="map"></a>
-    <div id="container" class="my_map center-block"></div>
-<div id="controls">
-    <div class="text-center">
-        <h2 class="hspecial"> <span class="label label-default" id="date">2013-01-25</span></h2>
-    </div>
-    <br />
-    <div class="text-center">
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-default" id="lessYear" data-toggle="tooltip" data-placement="left" title="Previus year">
-                <i class="glyphicon glyphicon-step-backward"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="lessMonth" data-toggle="tooltip" data-placement="bottom" title="Previus month">
-                <i class="glyphicon glyphicon-fast-backward"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="less" data-toggle="tooltip" data-placement="bottom" title="Previus day">
-                <i class="glyphicon glyphicon-chevron-left"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="play" data-toggle="tooltip" data-placement="bottom" title="Animation">
-                <i class="glyphicon glyphicon-play"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="stop" data-toggle="tooltip" data-placement="bottom" title="Animation">
-                <i class="glyphicon glyphicon-stop"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="more" data-toggle="tooltip" data-placement="bottom" title="Next day">
-                <i class="glyphicon glyphicon-chevron-right"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="moreMonth" data-toggle="tooltip" data-placement="bottom" title="Next month">
-                <i class="glyphicon glyphicon-fast-forward"></i>
-            </button>
-            <button type="button" class="btn btn-default" id="moreYear" data-toggle="tooltip" data-placement="right" title="Next year">
-                <i class="glyphicon glyphicon-step-forward"></i>
-            </button>
+    </nav>
+
+    <br />
+    <a name="map"></a>
+
+    <div id="container" class="my_map center-block"></div>
+
+    <div id="controls">
+        <div class="text-center">
+            <h2 class="hspecial"> <span class="label label-default" id="date">2013-01-25</span></h2>
+        </div>
+        <br />
+        <div class="text-center">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" id="lessYear" data-toggle="tooltip" data-placement="left" title="Previus year">
+                    <i class="glyphicon glyphicon-step-backward"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="lessMonth" data-toggle="tooltip" data-placement="bottom" title="Previus month">
+                    <i class="glyphicon glyphicon-fast-backward"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="less" data-toggle="tooltip" data-placement="bottom" title="Previus day">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="play" data-toggle="tooltip" data-placement="bottom" title="Animation">
+                    <i class="glyphicon glyphicon-play"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="stop" data-toggle="tooltip" data-placement="bottom" title="Animation">
+                    <i class="glyphicon glyphicon-stop"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="more" data-toggle="tooltip" data-placement="bottom" title="Next day">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="moreMonth" data-toggle="tooltip" data-placement="bottom" title="Next month">
+                    <i class="glyphicon glyphicon-fast-forward"></i>
+                </button>
+                <button type="button" class="btn btn-default" id="moreYear" data-toggle="tooltip" data-placement="right" title="Next year">
+                    <i class="glyphicon glyphicon-step-forward"></i>
+                </button>
+            </div>
         </div>
     </div>
-</div>
-    
-    
+
+    <br />
+    <br />
+    <br />
+
     <a name="about"></a>
     <div class="page-header text-center">
         <h1>About <small>Sky Aerosol Analyzer</small></h1>
@@ -98,6 +108,31 @@
 
     <br />
     <br />
+    
+    <!-- Modal -->
+<!--
+<div id="no-data" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Sorry</h3>
+    </div>
+    <div class="modal-body">
+        <p>There is no more data :(</p>
+    </div>
+</div>
+-->
+
+    <div id="no-data" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content text-center">
+                <h3 id="myModalLabel">Sorry</h3>
+                <br />
+                There is no more data :(
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
 
     <!--    ALL THE SCRIPS-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
