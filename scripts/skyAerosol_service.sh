@@ -18,13 +18,11 @@
 case "$1" in
   start)
     echo "Starting skyAerosol API"
-    # exec forever --sourceDir=/home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend -p /home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend app.js
     exec forever start --sourceDir=/home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend -p /home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend -s --append -l skyAA.log -e skAA_error.log --minUptime=2000 --spinSleepTime=3000  app.js --prod &
     echo "skyAerosol API started"
     ;;
   stop)
     echo "Stoping skyAerosol API"
-    # exec forever stop --sourceDir=/path/to/directory/containing_script -p /path/to/forever/pidetcfiles app.js
     exec forever stop --sourceDir=/home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend -p /home/aerosolanalyzer/SkyAerosolAnalyzer/skyAA_backend -s -l skyAA.log -e skyAA_error.log --minUptime=2000 --spinSleepTime=3000  app.js
     echo "skyAerosol API stoped"
     ;;

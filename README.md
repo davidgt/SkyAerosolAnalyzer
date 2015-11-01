@@ -8,24 +8,24 @@ A colaborative Application to measure the aerosol particles in the air by images
 
 ## Demo
 
-The demo online of [SkyAerosol_API](http://www.aerosolanalyzer.tk/) with the Daily Average of AERONET 
+The demo online of [SkyAerosol_API](http://www.aerosolanalyzer.tk/) with the Daily Average of AERONET
 
 http://www.aerosolanalyzer.tk/
 
-## The parts of softare
+## The parts of software
 
 This are the parts of the whole project:
 
 * Backend based on [SailsJS](http://sailsjs.org/#!/getStarted) and serving [AERONET data](http://aeronet.gsfc.nasa.gov/cgi-bin/combined_data_access_new) with a [mongoDB](https://www.mongodb.org/)
 * Frontend is a web page [Bootstrap](http://getbootstrap.com/) + [D3js](http://d3js.org/) + [DataMaps](http://datamaps.github.io/)
-* (work in progress) Image processing 
+* (work in progress) Image processing
 * (work in progress) App for Android
 
 ## Install on your own server
 
-In order to install the backend and serve your own data. You must install the back end, based on SailsJS. This is located at GItHub repository as skyAA_backend
+In order to install the backend and serve your own data. You must install the back end, based on SailsJS. This is located at GItHub repository as backend
 
-### Install NodeJS and SailsJS 
+### Install NodeJS and SailsJS
 
 In *Debian*:
 
@@ -46,7 +46,7 @@ In *Debian*:
 
 ```$ sudo  apt-get install mongodb```
 
-In order to have an install granulated  follow the instructions of this link http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian/ 
+In order to have an install granulated  follow the instructions of this link http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian/
 In the other hand is highly recomended to run a 64bits version of mongoDB to have a good performance on import operations and run a production server
 
 ### Install Forever
@@ -59,7 +59,7 @@ In *Debian*:
 
 ```$ git clone https://github.com/davidgt/SkyAerosolAnalyzer.git```
 
-```$ cd SkyAerosolAnalyzer/skyAA_backend```
+```$ cd SkyAerosolAnalyzer/backend```
 
 ```$ sudo npm install```
 
@@ -82,15 +82,44 @@ In order to execute the above script, skyAerosolAnalyzer_importer_mongodb.sh mus
 
 ### Start SkyAnalyzer server
 
-```$ cd skyAA_backend/```
+```$ cd backend/```
 
 ```$ sails lift```
 
 
 Or to run the server non stop use [forever](https://github.com/foreverjs/forever):
 
-```$ forever start skyAA_backend/app.js```
+`$ forever start backend/app.js`
 
 In Debian case, if you want to add a service to start and stop the server, copy the script skyAerosol_service.sh located at scripts/ directory on this repository to /etc/init.d/ on your Debian, give it executions permission (command above). And if you wish to start on boot (to get more info about this subject of [booting](https://www.debian-administration.org/article/28/Making_scripts_run_at_boot_time_with_Debian) on Debian):
 
-``$ sudo update-rc.d skyAerosol_service.sh defaults```
+`$ sudo update-rc.d skyAerosol_service.sh defaults`
+
+## API to consume data
+
+You can retrieve data in json:
+
+* Retrieve all records from Location called Burjassot
+
+`http://[serverIP]:[PORT]/days/find?Locations=Burjassot`
+
+* Retrieve all data from Location called Burjassot certain day
+
+`http://[serverIP]:[PORT]/days/find?Locations=Burjassot&Date(dd-mm-yyyy)=15:07:2003`
+
+
+* Retrieve all data from all location to certain day
+
+`http://[serverIP]:[PORT]/days/find?Date(dd-mm-yyyy)=15:07:2003`
+
+* Retrieve all data from points with elevation >= 1000 meters
+
+`http://[serverIP]:[PORT]/days?where={"elev":{">=":1000}}`
+
+* Retrieve all data from points with elevation >= 1000 meters and certain day
+
+`http://[serverIP]:[PORT]/days?where={"Date(dd-mm-yyyy)":"04:07:2003","elev":{">=":1000}}`
+
+* Retrieve all data Water(cm) variable is equal or greater than 2.5 cm
+
+`http://[serverIP]:[PORT]/days?where={"Water(cm)":{">=":2.5}}`

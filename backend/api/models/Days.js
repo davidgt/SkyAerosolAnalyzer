@@ -8,7 +8,13 @@
 module.exports = {
 
   attributes: {
+    long: { type: 'float' },
+    lat:  { type: 'float' },
+    elev: { type: 'integer' },
+    Julian_Day: { type: 'integer'},
+    'AOTExt438-T': { type: 'float' },
+    'AOT_1020': { type: 'float' },
+    'Water(cm)': { type: 'float' }
 
   }
 };
-

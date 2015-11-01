@@ -1,6 +1,6 @@
 /*
 
-Sky Aerosol Analyzer 
+Sky Aerosol Analyzer
 Aeronet Data visualization
 
 by Carlos Villanueva @carvilsi
@@ -18,8 +18,8 @@ $(document).ready(function () {
 
     var loo;
 
-//    var ip = "178.32.221.212"; // ip of server with skyAerosol API (localhost only for development porpuses)
-    var ip = "localhost"; // ip local for developing porpuses or running this stuff on your local deploy
+   var ip = "178.32.221.212"; // ip of server with skyAerosol API (localhost only for development porpuses)
+    // var ip = "localhost"; // ip local for developing porpuses or running this stuff on your local deploy
     var port = "1337"; // port of server with skyAerosol API
 
     var dta; // to store data
@@ -97,7 +97,7 @@ $(document).ready(function () {
             }).fail(function () {
             console.error('algo fue mal :S');
         });
-        
+
     }
 
     init();
@@ -114,7 +114,6 @@ $(document).ready(function () {
     function dateDBFormat() {
         var myDay = ('0' + date.getDate()).slice(-2) + ':' +
             ('0' + (date.getMonth() + 1)).slice(-2) + ':' + date.getFullYear();
-        //        console.log(myDay);
         return myDay;
     }
 
@@ -187,19 +186,17 @@ $(document).ready(function () {
         callData(myDay);
     });
 
-   
+
     function testDates() {
-   
+
         if (date < minDate) {
-            console.log('me paso de la fecha abajo');
             $('#no-data').modal('show');
         }
         if (date > maxDate) {
-            console.log('me paso de la fecha arriba');
             $('#no-data').modal('show');
         }
     }
-    
+
     $('#no-data').on('hidden.bs.modal', function (e) {
         init();
     })
@@ -238,7 +235,7 @@ $(document).ready(function () {
         //    $(map.svg[0][0]).on('click', '.bubbles', function (e) {
 
         var dt = e.target.__data__;
-        
+
         var arrayValues = new Array;
 
         $.map(dt, function (value, index) {
@@ -252,12 +249,12 @@ $(document).ready(function () {
         var dataKeysH = new Array;
         var dataValuesH1 = new Array;
         var dataKeysH1 = new Array;
-        
+
 
         // filtering first certain not interesting values
         // then filtering string stuff
         // catching only numbers
-        // get the values > 50 and 
+        // get the values > 50 and
         // then < 50 to visualize with another chart
 
         for (var i = 10; i <= arrayValues.length - 9; i++) {
@@ -274,9 +271,9 @@ $(document).ready(function () {
                         if (arrayValues[i] >= 1 && arrayValues[i] < 20) {
                             if (arrayValues[i] !== arrayValues[i+1]){
                                 dataValuesH1.push(arrayValues[i]);
-                                dataKeysH1.push(arrayKeys[i]);    
+                                dataKeysH1.push(arrayKeys[i]);
                             }
-                            
+
                         }
                     }
                 }
@@ -294,7 +291,7 @@ $(document).ready(function () {
         var dataBarH1 = {};
         dataBarH1.values = dataValuesH1;
         dataBarH1.labels = dataKeysH1;
-        
+
         var locales = {
             location: dt.Locations,
             lat: dt.lat,
@@ -397,7 +394,7 @@ $(document).ready(function () {
 
         chart.style("opacity", .8);
     }
-    
+
     function drawVertical1(data) {
 
         var chartWidth = 300,
@@ -478,37 +475,37 @@ $(document).ready(function () {
 
         chart.style("opacity", .8);
     }
-    
+
     function drawLocationAndCreator(data) {
         var legend = d3.select("svg.datamap")
                     .append("g")
-                    .attr("id", "legendLocation");        
-        
+                    .attr("id", "legendLocation");
+
         legend.append("text")
                 .attr("x",450)
                 .attr("y",45)
                 .text("Location: " + data.location);
-                
+
         legend.append("text")
                 .attr("x",450)
                 .attr("y",70)
                 .text("Latitude: " + data.lat + "º");
-        
+
         legend.append("text")
                 .attr("x",450)
                 .attr("y",95)
                 .text("Longitude: " + data.long + "º");
-                
+
         legend.append("text")
                 .attr("x",30)
                 .attr("y",130)
                 .text("Principal Investigator(s): " + data.author);
-        
+
         legend.append("text")
                 .attr("x",650)
                 .attr("y",45)
                 .text("870-440AngstromParam.[AOTExt]-Total: " + data.param);
-        
+
         legend.append("text")
                 .attr("x",650)
                 .attr("y",70)
@@ -532,7 +529,7 @@ $(document).ready(function () {
         var chart = d3.select("svg.datamap")
                     .append("g")
                     .attr("id", "chart1");
-        
+
         y.domain([0, d3.max(data.values, function (d) {
             return d;
         })]);
@@ -579,7 +576,7 @@ $(document).ready(function () {
             .text(function (d, i) {
                 return data.labels[i];
             });
-        
+
         // possition
         chart.attr("transform", "translate(15,300)");
 
@@ -587,10 +584,10 @@ $(document).ready(function () {
     }
 
     map.legend();
-    
-    
+
+
     addMoreThingsToLegend();
-    
+
     function addMoreThingsToLegend() {
         var legend = d3.select(".datamaps-legend")
                     .append("g")
