@@ -36,11 +36,12 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#map" id="inicio">Map</a>
                     </li>
+                    <li><a href="#api" id="inicio">API</a>
+                    </li>
                     <li><a href="#about" id="sobre">About Sky Aerosol Analyzer</a>
                     </li>
                 </ul>
             </div>
-
         </div>
 
     </nav>
@@ -90,6 +91,196 @@
     <br />
     <br />
 
+
+    <a name="api"></a>
+    <div class="page-header text-center">
+        <h1>API <small>REST to consume data on JSON format</small></h1>
+        <br />
+        <p>With this API we try to make more accesible and tech easy retrieve data from AERONET archieves</p>
+        <br />
+        <h2>Services</h2>
+        <br />
+        <h4>GET all records of daily average data from a location</h4>
+          <!-- <p>
+            <strong>/days/find?Locations</strong>
+          </p> -->
+
+        <p>
+          Retrieve all records from a location called Burjassot
+        </p>
+
+        <p>
+          <strong>http://[serverIP]:[PORT]/days/find?Locations=Burjassot</strong>
+        </p>
+        <br />
+        <p>
+          Web bowser http example, click on link icon
+        </p>
+        <p>
+          <a href="" target="_blank" id="a-ex-locations"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+          <span class="example-http" id="example-http-locations">
+            http://<span class="ip"></span>:<span class="port"></span>/days/find?Locations=Burjassot
+          </span>
+        </p>
+        <p>
+          Curl example, copy (click on terminal command) and paste to your terminal
+        </p>
+        <p>
+          <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -i -H "Accept: application/json" "<span class="ip"></span>:<span class="port"></span>/days/find?Locations=Burjassot" </span>
+        </p>
+
+        <br />
+        <h4>GET daily average data from a location and certain date</h4>
+
+        <p>
+          Retrieve all data from a location called Burjassot certain on fiveteen of Agoust 2003
+        </p>
+
+        <p>
+         <strong>http://[serverIP]:[PORT]/days/find?Locations=Burjassot&Date(dd-mm-yyyy)=15:07:2003</strong>
+       </p>
+       <br />
+
+        <p>
+          Web bowser http example, click on link icon
+        </p>
+        <p>
+          <a href="" target="_blank" id="a-ex-locations-date"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+          <span class="example-http" id="example-http-locations-date">
+            http://<span class="ip"></span>:<span class="port"></span>/days/find?Locations=Burjassot&Date(dd-mm-yyyy)=16:04:2013
+          </span>
+        </p>
+        <p>
+          Curl example, copy (click on terminal command) and paste to your terminal
+        </p>
+        <p>
+          <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -i -H "Accept: application/json" "<span class="ip"></span>:<span class="port"></span>/days/find?Locations=Burjassot&Date(dd-mm-yyyy)=16:04:2013" </span>
+        </p>
+
+
+         <!-- <p>
+          <strong>http://[serverIP]:[PORT]/days/find?Locations=Burjassot&Date(dd-mm-yyyy)=15:07:2003</strong>
+        </p> -->
+<!-- <hr /> -->
+        <br />
+        <h4>GET daily average data from all locations and certain day</h4>
+
+        <!-- <p>
+          <strong>/days/find?Date(dd-mm-yyyy)</strong>
+        </p> -->
+
+        <p>
+          Retrieve all data from all locations on fiveteen of Agoust 2003
+        </p>
+
+        <p>
+          <strong>http://[serverIP]:[PORT]/days/find?Date(dd-mm-yyyy)=15:07:2003</strong>
+        </p>
+
+
+        <br />
+
+         <p>
+           Web bowser http example, click on link icon
+         </p>
+         <p>
+           <a href="" target="_blank" id="a-ex-date"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+           <span class="example-http" id="example-http-date">
+             http://<span class="ip"></span>:<span class="port"></span>/days/find?Date(dd-mm-yyyy)=15:07:2003
+           </span>
+         </p>
+         <p>
+           Curl example, copy (click on terminal command) and paste to your terminal
+         </p>
+         <p>
+           <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -i -H "Accept: application/json" "<span class="ip"></span>:<span class="port"></span>/days/find?Date(dd-mm-yyyy)=15:07:2003" </span>
+         </p>
+
+        <br />
+        <h4>GET daily average data from all locations with more than certain elevation</h4>
+
+        <p>
+          Retrieve all data from points with elevation >= 1000 meters
+        </p>
+
+        <p>
+          <strong>http://[serverIP]:[PORT]/days?where={"elev":{">=":1000}}</strong>
+        </p>
+
+        <br />
+
+         <p>
+           Web bowser http example, click on link icon
+         </p>
+         <p>
+           <a href="" target="_blank" id="a-ex-elev"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+           <span class="example-http" id="example-http-elev">
+             http://<span class="ip"></span>:<span class="port"></span>/days?where={"elev":{">=":1000}}
+           </span>
+         </p>
+         <p>
+           Curl example, copy (click on terminal command) and paste to your terminal
+         </p>
+         <p>
+           <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -g -i -H "Accept: application/json" '<span class="ip"></span>:<span class="port"></span>/days?where={"elev":{">=":1000}}' </span>
+         </p>
+
+        <br />
+        <h4>GET daily average data from all locations with more than certain elevation and certain day</h4>
+
+        <p>
+          Retrieve all data from points with elevation >= 1000 meters on fiveteen of Agoust 2003
+        </p>
+        <p>
+          <strong>http://[serverIP]:[PORT]/days?where={"Date(dd-mm-yyyy)":"15:07:2003","elev":{">=":1000}}</strong>
+        </p>
+
+        <p>
+          Web bowser http example, click on link icon
+        </p>
+        <p>
+          <a href="" target="_blank" id="a-ex-elev-date"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+          <span class="example-http" id="example-http-elev-date">
+            http://<span class="ip"></span>:<span class="port"></span>/days?where={"Date(dd-mm-yyyy)":"15:07:2003","elev":{">=":1000}}
+          </span>
+        </p>
+        <p>
+          Curl example, copy (click on terminal command) and paste to your terminal
+        </p>
+        <p>
+          <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -g -i -H "Accept: application/json" '<span class="ip"></span>:<span class="port"></span>/days?where={"Date(dd-mm-yyyy)":"15:07:2003","elev":{">=":1000}}' </span>
+        </p>
+
+        <br />
+        <h4>GET daily average data when Water(cm) variable is equal or greater than certain value</h4>
+        <p>
+          Retrieve all data when Water(cm) variable is equal or greater than 2.5 cm
+        </p>
+        <p>
+          <strong>http://[serverIP]:[PORT]/days?where={"Water(cm)":{">=":2.5}}</strong>
+        </p>
+
+        <br />
+
+        <p>
+          Web bowser http example, click on link icon
+        </p>
+        <p>
+          <a href="" target="_blank" id="a-ex-water"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>
+          <span class="example-http" id="example-http-water">
+            http://<span class="ip"></span>:<span class="port"></span>/days?where={"Water(cm)":{">=":2.5}}
+          </span>
+        </p>
+        <p>
+          Curl example, copy (click on terminal command) and paste to your terminal
+        </p>
+        <p>
+           <span class="example-curl"><span class="glyphicon glyphicon-usd terminal" aria-hidden="true"></span> curl -g -i -H "Accept: application/json" '<span class="ip"></span>:<span class="port"></span>/days?where={"Water(cm)":{">=":2.5}}' </span>
+        </p>
+
+    </div>
+
+
     <a name="about"></a>
     <div class="page-header text-center">
         <h1>About <small>Sky Aerosol Analyzer</small></h1>
@@ -108,7 +299,7 @@
 
     <br />
     <br />
-    
+
     <!-- Modal -->
 
     <div id="no-data" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -129,7 +320,7 @@
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="bower_components/topojson/topojson.js"></script>
     <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
-    <script src="js/skyAA.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

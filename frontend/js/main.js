@@ -9,8 +9,6 @@ carvilsi@gmail.com
 MIT license 2015
 */
 
-$(document).ready(function () {
-
 
     var date = new Date('2013-01-25'); //    YYYY-MM-DD
     var minDate = new Date('1993-06-17'); //    first day records: 1993-06-17
@@ -23,10 +21,26 @@ $(document).ready(function () {
     var port = "1337"; // port of server with skyAerosol API
 
     var dta; // to store data
+    var map;
+
+
+$(document).ready(function () {
+
+  // init api document
+
+    $('.ip').text(ip);
+    $('.port').text(port);
+    $('#a-ex-locations').attr('href', $('#example-http-locations').text());
+    $('#a-ex-locations-date').attr('href', $('#example-http-locations-date').text());
+    $('#a-ex-date').attr('href', $('#example-http-date').text());
+    $('#a-ex-elev').attr('href', $('#example-http-elev').text());
+    $('#a-ex-elev-date').attr('href', $('#example-http-elev-date').text());
+    $('#a-ex-water').attr('href', $('#example-http-water').text());
+
 
     // init the map
 
-    var map = new Datamap({
+    map = new Datamap({
         element: document.getElementById('container'),
         responsive: false,
 //                        width: 900,
@@ -62,7 +76,7 @@ $(document).ready(function () {
         }
     });
 
-
+// });
 
     $(window).on('resize', function () {
         map.resize();
@@ -199,7 +213,7 @@ $(document).ready(function () {
 
     $('#no-data').on('hidden.bs.modal', function (e) {
         init();
-    })
+    });
 
     $('button.btn').on('click', function () {
         if ($('#stop').is(':visible')) {
@@ -229,26 +243,26 @@ $(document).ready(function () {
         $('#play').show();
         $('#stop').hide();
         clearInterval(loo);
-    };
+    }
 
     $(map.svg[0][0]).on('mouseover', '.bubbles', function (e) {
-        //    $(map.svg[0][0]).on('click', '.bubbles', function (e) {
 
         var dt = e.target.__data__;
 
-        var arrayValues = new Array;
+        var arrayValues = [];
+        // var arrayValues = new Array();
 
         $.map(dt, function (value, index) {
             arrayValues.push(value);
         });
 
         var arrayKeys = Object.keys(dt);
-        var dataValues = new Array;
-        var dataKeys = new Array;
-        var dataValuesH = new Array;
-        var dataKeysH = new Array;
-        var dataValuesH1 = new Array;
-        var dataKeysH1 = new Array;
+        var dataValues = [];
+        var dataKeys = [];
+        var dataValuesH = [];
+        var dataKeysH = [];
+        var dataValuesH1 = [];
+        var dataKeysH1 = [];
 
 
         // filtering first certain not interesting values
@@ -299,7 +313,7 @@ $(document).ready(function () {
             elev: dt.elev,
             author: dt.PI,
             param: dt['870-440AngstromParam.[AOTExt]-Total']
-        }
+        };
 
         drawVertical(dataBar);
         drawVertical1(dataBarH1);
@@ -383,7 +397,7 @@ $(document).ready(function () {
             .attr("y", groupHeight / 2)
             .attr("dy", ".35em")
             .text(function (d, i) {
-                return data.labels[i]
+                return data.labels[i];
             });
 
 
@@ -392,7 +406,7 @@ $(document).ready(function () {
             .attr("transform", "translate(" + (spaceForLabels + 20) + ", " + (-gapBetweenGroups / 2 + 150) + ")")
             .call(yAxis);
 
-        chart.style("opacity", .8);
+        chart.style("opacity", 0.8);
     }
 
     function drawVertical1(data) {
@@ -464,7 +478,7 @@ $(document).ready(function () {
             .attr("y", groupHeight / 2)
             .attr("dy", ".35em")
             .text(function (d, i) {
-                return data.labels[i]
+                return data.labels[i];
             });
 
 
@@ -473,7 +487,7 @@ $(document).ready(function () {
             .attr("transform", "translate(" + (spaceForLabels + 20 + 600) + ", " + (-gapBetweenGroups / 2 + 150) + ")")
             .call(yAxis);
 
-        chart.style("opacity", .8);
+        chart.style("opacity", 0.8);
     }
 
     function drawLocationAndCreator(data) {
@@ -524,7 +538,7 @@ $(document).ready(function () {
             .range([height, 0]);
 
         var x = d3.scale.linear()
-            .range([0, width], .1);
+            .range([0, width], 0.1);
 
         var chart = d3.select("svg.datamap")
                     .append("g")
@@ -580,7 +594,7 @@ $(document).ready(function () {
         // possition
         chart.attr("transform", "translate(15,300)");
 
-        chart.style("opacity", .8);
+        chart.style("opacity", 0.8);
     }
 
     map.legend();
@@ -597,4 +611,19 @@ $(document).ready(function () {
         legend.append("text")
                 .html("level0 N/A     level1 < 0.5     level2 [0.5,1]     level3 [1,1.5]     level4 > 1.5");
     }
-})
+});
+
+/**
+ * Copy terminal command to clipboard
+ */
+
+$('.example-curl').on('click', function(){
+  console.log('=^^=|_');
+  console.log($(this).text());
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(this).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+  console.log();
+});

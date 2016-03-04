@@ -16,6 +16,18 @@
     margin-bottom: 0px !important;
 }
 
+.example-curl {
+  background-color: black;
+  color: white;
+  padding: 4px;
+}
+
+.example-http {
+  background-color: gainsboro;
+  color: black;
+  padding: 4px;
+}
+
 
 #controls {
     width: 350px;
@@ -24,7 +36,7 @@
     top: 560px;
     left: 40%;
     z-index: 10000;
-    
+
 }
 
 .line1 {

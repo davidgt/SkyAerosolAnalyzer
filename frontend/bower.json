@@ -1,0 +1,23 @@
+{
+  "name": "frontendArosol",
+  "homepage": "https://github.com/davidgt/SkyAerosolAnalyzer",
+  "authors": [
+    "carvilsi <carvilsi@gmail.com>"
+  ],
+  "description": "bower dependencies for frontend SkyAerosolAnalyzer",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "datamaps": "~0.4.0",
+    "jquery": "~2.1.3"
+  }
+}
