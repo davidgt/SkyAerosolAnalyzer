@@ -8,9 +8,8 @@ A colaborative Application to measure the aerosol particles in the air by images
 
 ## Demo
 
-The demo online of [SkyAerosol_API](http://www.aerosolanalyzer.tk/) with the Daily Average of AERONET
+The demo online of [SkyAerosol_API](http://aerosolskyanalyzer.tk/) with the Daily Average of AERONET
 
-http://www.aerosolanalyzer.tk/
 
 ## The parts of software
 
